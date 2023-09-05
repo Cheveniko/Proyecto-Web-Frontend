@@ -1,0 +1,79 @@
+.asiento {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ccc;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  h2 {
+    font-family: 'Arial', sans-serif; 
+    font-size: 24px; 
+    color: #333; 
+    opacity: 0.8; 
+    text-align: center; 
+    padding: 10px; 
+    background-color: #f2f2f2; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  h2 br {
+    display: none; /* Oculta las etiquetas <br> para hacerlo más suave */
+  }
+  
+  h2 span {
+    font-weight: bold; 
+    color: #2C547E; 
+  }
+  h3 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+
+  .payment-details-table {
+    border-collapse: collapse;
+    width: 300px;
+    margin: 0 auto; /* Centrar la tabla horizontalmente */
+}
+
+.table-header, .concept, .highlighted-value {
+    border: 1px solid transparent; /* Quita los bordes internos */
+    padding: 10px;
+    text-align: left;
+}
+
+.table-header {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para resaltar los valores */
+.highlighted-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444D55; /* Color llamativo (naranja) */
+}
+
+  
+

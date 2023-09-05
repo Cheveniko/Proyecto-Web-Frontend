@@ -1,0 +1,32 @@
+<div class="container">
+  <button
+    *ngIf="!showPaypalButtons && !showSuccess"
+    (click)="pay()"
+    class="paypal-button"
+  >
+    <span>Pagar con </span>
+    <div class="paypal-logo">
+      <img src="assets\img\paypal-logo-1-1.png" alt="Logo de PayPal" />
+    </div>
+  </button>
+
+  <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
+  </ngx-paypal>
+  <!-- <button *ngIf="showPaypalButtons" (click)="back()">Volver atras</button> -->
+
+
+  <div *ngIf="showSuccess" class="payment-success">
+    <div class="success-message">
+      <p class="text-success">¡PAGO EXITOSO!</p>
+      <p>Gracias por su compra. Una vez finalizada la compra, se enviará su factura a su correo.</p>
+      <button (click)="finalizar()" class="finalize-button">Finalizar Compra</button>
+    </div>
+  </div>
+  
+
+  <div *ngIf="showError" class="error-message">
+    <p class="text-error">¡UPS! Algo ha ocurrido con su pago.</p>
+    <p>Por favor, inténtelo nuevamente más tarde o póngase en contacto con nuestro equipo de soporte.</p>
+  </div>
+  
+</div>

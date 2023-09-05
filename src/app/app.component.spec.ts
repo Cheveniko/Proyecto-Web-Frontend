@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Proyecto-Web-Frontend'`, () => {
+  it(`should have as title 'Poliflight-Front'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Proyecto-Web-Frontend');
+    expect(app.title).toEqual('Poliflight-Front');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Proyecto-Web-Frontend app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Poliflight-Front app is running!');
   });
 });

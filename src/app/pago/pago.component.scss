@@ -1,0 +1,89 @@
+.paypal-button {
+    background-color: #0070ba;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .paypal-button:hover {
+    background-color: #004a75;
+    transform: scale(1.05);
+  }
+  
+  .paypal-logo img {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+  }
+  
+  .paypal-button span {
+    margin-right: 10px;
+  }
+
+
+
+  // PAGO EXITOSO
+
+
+
+  .payment-success {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .success-message {
+    flex: 1;
+  }
+  
+  .text-success {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .finalize-button {
+    background-color: #0070ba;
+    color: #ffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+
+  // ERROR PAGO
+
+
+  .error-message {
+    background-color: #ffe6e6;
+    border: 2px solid #ff7f7f;
+    border-radius: 8px;
+    padding: 20px;
+    color: #ff5050;
+    font-size: 18px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-error {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3333;
+  }
+  
+  
+  

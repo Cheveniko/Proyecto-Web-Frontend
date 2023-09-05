@@ -1,0 +1,253 @@
+<div class="container">
+  <h1>Itinerario de viaje</h1>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header">
+          <h3>Resumen del viaje</h3>
+        </div>
+
+        
+        <table>
+          <tr>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Itinerario</th>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Vuelo</th>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Distancia</th>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Salida</th>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Maleta</th>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Total Base</th>
+              <th style="padding: 8px; background-color: #f2f2f2; font-size: 12px;">Clase</th>
+          </tr>
+          <tr *ngFor="let dato of datos">
+              <td style="padding: 8px; font-size: 12px;">
+                  Desde: <br> {{dato.desde}} <br> Hacia: <br> {{dato.hacia}}
+              </td>
+              <td style="padding: 8px; font-size: 12px;">{{dato.numVuelo}}</td>
+              <td style="padding: 8px; font-size: 12px;">{{dato.distancia}} km</td>
+              <td style="padding: 8px; font-size: 12px;">{{dato.fecha}}</td>
+              <td style="padding: 8px; font-size: 12px;">{{dato.totalMaletas}}</td>
+              <td style="padding: 8px; font-size: 12px;">${{dato.precioTotal}}</td>
+              <td style="padding: 8px; font-size: 12px;">{{dato.clase}}</td>
+          </tr>
+      </table>
+        
+        
+      </div>
+      <div class="card mt-3">
+        <div class="card-header">
+          <h3> Ingrese su informacion para prosegir con el pago</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" formControlName="nombre" placeholder="Ingrese su nombre" class="form-control">
+              <label class="text-danger" *ngIf="getError(form.get('nombre'))">
+                {{ getError(form.get('nombre')) }}
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" formControlName="apellido" placeholder="Ingrese su apellido" class="form-control">
+              <label class="text-danger" *ngIf="getError(form.get('apellido'))">
+                {{ getError(form.get('apellido')) }}
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Enter email:</label>
+              <input type="text" formControlName="email" placeholder="Enter email" class="form-control">
+              <label class="text-danger" *ngIf="getError(form.get('email'))">
+                {{ getError(form.get('email')) }}
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" formControlName="telefono" placeholder="Ingrese su teléfono" class="form-control">
+              <label class="text-danger" *ngIf="getError(form.get('telefono'))">
+                {{ getError(form.get('telefono')) }}
+              </label>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="guardarInformacion()">Pagar</button>
+          </form>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-header">
+          <h3>Asientos seleccionados</h3>
+        </div>
+        <div class="card-body">
+          <!-- Aquí se puede usar un componente de angular para mostrar los asientos disponibles y seleccionados -->
+          <!-- Por ejemplo: https://www.npmjs.com/package/ng-seatmap -->
+          <!-- Se asume que el usuario ya ha seleccionado los asientos y se muestran en una tabla -->
+          <div *ngFor = "let asiento of asientos">
+            <h2> Lugar de salida: <span>{{asiento.desde}}</span> <br> Lugar de llegada: <span>{{asiento.hacia}}</span></h2>
+            <table class="default" >
+              <tr>
+                <th scope="row">Asiento</th>
+                <th>Asignacion</th>
+                <th>Aplicacion de descuento</th>
+                <th>Precio</th>
+              </tr>
+
+              <tr>
+                <th>Adultos Mayores</th>
+                <td>
+                  <div *ngFor ="let mayores of asiento.mayores">
+                    <h3>{{mayores}}</h3>
+                  </div>
+                  
+                </td>
+                <td>50% Off</td>
+                <td>${{asiento.precioMayores}}</td>
+              </tr>
+            
+              <tr>
+                <th>Adultos</th>
+                <td>
+                  <div *ngFor ="let adultos of asiento.adultos">
+                    <h3>{{adultos}}</h3>
+                  </div>
+                  
+                </td>
+                <td>-</td>
+                <td>${{asiento.precioAdultos}}</td>
+              </tr>
+            
+              <tr>
+                <th>Niños</th>
+                <td>
+                  <div *ngFor ="let ninos of asiento.ninos">
+                    <h3>{{ninos}}</h3>
+                  </div>
+                  
+                </td>
+                <td> - </td>
+                <td>${{asiento.precioNinos}}</td>
+              </tr>
+
+              <tr>
+                <th>Infantes</th>
+                <td>
+                  <div *ngFor ="let infantes of asiento.infantes">
+                    <h3>{{infantes}}</h3>
+                  </div>
+                  
+                </td>
+                <td>100% Off</td>
+                <td>${{asiento.precioInfantes}}</td>	
+              </tr>
+
+              
+            </table>
+          </div>
+          
+
+      <!-- Se usa un componente de bootstrap para crear un acordeón con las condiciones de compra y las reglas y reembolsos -->
+      <!-- https://getbootstrap.com/docs/5.0/components/accordion/ -->
+      <!-- Se asume que el contenido de cada sección es estático y se puede modificar según la aerolínea -->
+      <!-- Se puede usar un servicio de angular para obtener el contenido dinámicamente desde una API o una base de datos -->
+      <!-- Por ejemplo: https://angular.io/tutorial/toh-pt4 -->
+
+      
+    </div>
+
+    <!-- Se usa una columna diferente para mostrar el carrito con los precios y detalles de compra -->
+    <div class="col-md-12">
+      <div class="card">
+          <div class="card-header">
+              <h3 class="text-center">Valores Finales</h3>
+          </div>
+          <br>
+          <table class="payment-details-table">
+              <tr>
+                  <th class="table-header">Concepto</th>
+                  <th class="table-header">Valor</th>
+              </tr>
+              <tr>
+                  <td class="concept">Subtotal</td>
+                  <td class="highlighted-value">${{this.subtotal}}</td>
+              </tr>
+              <tr>
+                  <td class="concept">IVA (12%)</td>
+                  <td class="highlighted-value">${{this.iva}}</td>
+              </tr>
+              <tr>
+                  <td class="concept">Total</td>
+                  <td class="highlighted-value">${{totalFinal}}</td>
+              </tr>
+          </table>
+          <div class="card-body d-flex align-items-center justify-content-center">
+              <app-pago></app-pago>
+          </div>
+          <div>
+              
+          </div>
+      </div>
+  </div>
+
+    <div class="accordion mt-3" id="accordionExample">
+      <!-- Sección de condiciones de compra -->
+      <div class="accordion-item">
+        <!-- Botón para desplegar o contraer la sección -->
+        <!-- Se usa el atributo data-bs-target para indicar el id del elemento que se va a desplegar o contraer -->
+        <!-- Se usa el atributo aria-controls para indicar el id del elemento que se va a controlar -->
+        <!-- Se usa el atributo aria-expanded para indicar si el elemento está desplegado o no -->
+        <!-- Se usa la clase collapsed para indicar que el elemento está contraído por defecto -->
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Condiciones de compra
+          </button>
+        </h2>
+        <!-- Elemento que se va a desplegar o contraer -->
+        <!-- Se usa el atributo aria-labelledby para indicar el id del elemento que lo controla -->
+        <!-- Se usa la clase collapse para indicar que el elemento es colapsable -->
+        <!-- Se usa la clase show para indicar que el elemento está desplegado por defecto -->
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <!-- Contenido de la sección -->
+          <div class="accordion-body">
+            <p>Estas son las condiciones de compra de la aerolínea:</p>
+            <ul>
+              <li>El pago se puede realizar con tarjeta de crédito o débito, PayPal o transferencia bancaria.</li>
+              <li>El precio incluye los impuestos, tasas y cargos aplicables.</li>
+              <li>El precio no incluye el equipaje facturado, el seguro de viaje ni los servicios adicionales.</li>
+              <li>El precio está sujeto a cambios según la disponibilidad y la demanda.</li>
+              <li>La reserva se confirma una vez que se recibe el pago completo.</li>
+              <li>Se debe presentar el documento de identidad o pasaporte válido para el embarque.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de reglas y reembolsos -->
+      <div class="accordion-item">
+        <!-- Botón para desplegar o contraer la sección -->
+        <!-- Se usa el atributo data-bs-target para indicar el id del elemento que se va a desplegar o contraer -->
+        <!-- Se usa el atributo aria-controls para indicar el id del elemento que se va a controlar -->
+        <!-- Se usa el atributo aria-expanded para indicar si el elemento está desplegado o no -->
+        <!-- Se usa la clase collapsed para indicar que el elemento está contraído por defecto -->
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Reglas y reembolsos
+          </button>
+        </h2>
+        <!-- Elemento que se va a desplegar o contraer -->
+        <!-- Se usa el atributo aria-labelledby para indicar el id del elemento que lo controla -->
+        <!-- Se usa la clase collapse para indicar que el elemento es colapsable -->
+        <!-- Se usa la clase show para indicar que el elemento está desplegado por defecto -->
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <!-- Contenido de la sección -->
+          <div class="accordion-body">
+            <p>Estas son las reglas y reembolsos de la aerolínea:</p>
+            <ul>
+              <li>Se puede cambiar la fecha o el destino del vuelo hasta 24 horas antes de la salida, pagando una penalidad y la diferencia de tarifa si la hubiera.</li>
+              <li>Se puede cancelar la reserva hasta 48 horas antes de la salida, pagando una penalidad y recibiendo un crédito para futuros vuelos.</li>
+              <li>No se permite el cambio ni la cancelación dentro de las 24 horas previas a la salida.</li>
+              <li>No se permite el reembolso en efectivo ni en el método de pago original.</li>
+              <li>En caso de cancelación o retraso del vuelo por parte de la aerolínea, se ofrecerá una alternativa o un reembolso completo según las normas vigentes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": "90f12696-6487-4936-b38d-ca3e2afee8ac"
+  },
   "newProjectRoot": "projects",
   "projects": {
-    "Proyecto-Web-Frontend": {
+    "Poliflight-Front": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +21,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/proyecto-web-frontend",
+            "outputPath": "dist/poliflight-front",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -30,6 +34,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -65,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Proyecto-Web-Frontend:build:production"
+              "browserTarget": "Poliflight-Front:build:production"
             },
             "development": {
-              "browserTarget": "Proyecto-Web-Frontend:build:development"
+              "browserTarget": "Poliflight-Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Proyecto-Web-Frontend:build"
+            "browserTarget": "Poliflight-Front:build"
           }
         },
         "test": {
@@ -93,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
